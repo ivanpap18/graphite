@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+ 
+  graphite:
+    image: graphiteapp/graphite-statsd:latest
+    restart: always
+    volumes:
+      - ./conf:/opt/graphite/conf
+    environment:
+      - GRAPHITE_WSGI_PROCESSES=8
+      - GRAPHITE_WSGI_MAX_REQUESTS=25
+    ports:
+      - 80:80
+      - 8125:8125
+      - 2003-2004:2003-2004                  
+      - 2023-2024:2023-2024
+      - 8126:8126
