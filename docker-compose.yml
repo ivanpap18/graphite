@@ -7,6 +7,8 @@ services:
     restart: always
     volumes:
       - ./conf:/opt/graphite/conf
+      - ./stats:/opt/graphite/whisper/stats/
+
     environment:
       - GRAPHITE_WSGI_PROCESSES=8
       - GRAPHITE_WSGI_MAX_REQUESTS=25
@@ -16,3 +18,15 @@ services:
       - 2003-2004:2003-2004                  
       - 2023-2024:2023-2024
       - 8126:8126
+  #   entrypoint:
+  #     - /bin/sh
+  #     - -c
+  #     - |
+  #       sed -i 's/MAX_UPDATES_PER_SECOND = 500/MAX_UPDATES_PER_SECOND = 0.1/' /opt/graphite/conf/carbon.conf
+  #       /entrypoint
+  # grafana:
+  #   image: grafana/grafana:8.2.4
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  
